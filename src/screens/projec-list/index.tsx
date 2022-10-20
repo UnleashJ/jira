@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { List } from './list'
 import { SearchPanel } from './search-panel'
 import qs from 'qs'
@@ -24,14 +24,14 @@ export const ProjectListScreen = () => {
       }
     })
   }, [debouncedParam])
-
-  useMount(() => {
+  
+  useMount(useCallback(() => {
     fetch(`${apiURL}/users`).then(async res => {
       if(res.ok) {
         setUsers(await res.json())
       }
     })
-  })
+  }, [setUsers]))
 
   return (
     <div>
