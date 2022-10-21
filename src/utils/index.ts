@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 
-export const isFalsy = (value: any) => (value === 0 ? false : !value);
-
+export const isFalsy = (value: unknown):boolean => {
+  return value === 0 ? false : !value;
+}
 export const cleanObject = (object: object) => {
   const result = { ...object };
   Object.keys(result).forEach((key) => {
@@ -21,7 +22,7 @@ export const useMount = (cb:() => void) => {
 
 // 防抖，包装一个参数value，返回一个新参数debouncedParam。
 // 连续改变value，间隔delay毫秒及以上，才真的改变value
-export const useDebounce = (value: any, delay:number = 200) => {
+export const useDebounce = <T> (value: T, delay:number = 200) => {
   const [param, setParam] = useState(value);
 
   useEffect(() => {

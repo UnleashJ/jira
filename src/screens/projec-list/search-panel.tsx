@@ -8,7 +8,7 @@ interface SearchPanelProps {
     name: string
     personId: string
   },
-  setParam:  ((cb: (state: SearchPanelProps['param']) => SearchPanelProps['param']) => void) & ((param: SearchPanelProps['param']) => void)
+  setParam:  (param: ((state: SearchPanelProps['param']) => SearchPanelProps['param']) | SearchPanelProps['param']) => void
 }
 
 export const SearchPanel = ({users, param, setParam} : SearchPanelProps) => {
@@ -19,10 +19,10 @@ export const SearchPanel = ({users, param, setParam} : SearchPanelProps) => {
           ...state,
           name:e.target.value
         }))} />
-        <select value={param.personId} onChange={e => setParam(state => ({
-          ...state,
+        <select value={param.personId} onChange={e => setParam({
+          ...param,
           personId: e.target.value
-        }))}>
+        })}>
           <option value={''}>负责人</option>
           {
             users.map(user => (
