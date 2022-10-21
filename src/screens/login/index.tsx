@@ -1,23 +1,10 @@
+import { useAuth } from "context/auto-context"
 import { FormEvent, FormEventHandler } from "react"
 
 const apiURL = process.env.REACT_APP_API_URL
 
 export const LoginScreen = () => {
-  const login = (param:{username:string, password:string}) => {
-    fetch(`${apiURL}/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(param)
-    }).then(
-      async (response: Response) => {
-        if(response.ok) {
-
-        }
-      }
-    )
-  }
+  const {login, user} = useAuth()
 
   const handleSubmit: FormEventHandler<HTMLFormElement> | undefined = (event) => {
     event.preventDefault()
@@ -27,6 +14,9 @@ export const LoginScreen = () => {
   }
   return (
     <form onSubmit={handleSubmit}>
+      {
+        user && `登录成功，用户名：${user?.name}`
+      }
       <div>
         <label htmlFor="username">用户名</label>
         <input type="text" id="username" />
