@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 export const isFalsy = (value: unknown):boolean => {
   return value === 0 ? false : !value;
 }
+
 export const cleanObject = (object: object) => {
   const result = { ...object };
   Object.keys(result).forEach((key) => {
@@ -34,3 +35,28 @@ export const useDebounce = <T> (value: T, delay:number = 200) => {
 
   return param;
 };
+
+// 数组操作
+export const useArray = <T> (array: T[]) => {
+  const [value, setValue] = useState(array)
+  const add = (item: T) => {
+    setValue([...value, item])
+  }
+  const clear = () => {
+    setValue([])
+  }
+  const removeIndex = (index:number) => {
+    setValue(state => {
+      state.splice(index, 1) // splice返回被修改的内容
+      return state
+    })
+  }
+
+  return {
+    value,
+    setValue,
+    add,
+    clear,
+    removeIndex,
+  }
+}
