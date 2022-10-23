@@ -4,13 +4,16 @@ export const isFalsy = (value: unknown):boolean => {
   return value === 0 ? false : !value;
 }
 
-export const cleanObject = (object: object) => {
+export const isVoid = (value: unknown): boolean => {
+  return value === undefined || value === null || value === ''
+} 
+
+// {[key:string]:unknown} 索引类型
+export const cleanObject = (object: {[key:string]:unknown}) => {
   const result = { ...object };
   Object.keys(result).forEach((key) => {
-    // @ts-ignore
     const value = result[key];
-    if (isFalsy(value)) {
-      // @ts-ignore
+    if (isVoid(value)) {
       delete result[key];
     }
   });
@@ -18,6 +21,8 @@ export const cleanObject = (object: object) => {
 };
 
 export const useMount = (cb:() => void) => {
+  // 依赖项加上cb会造成无限循环
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(cb, []);
 };
 

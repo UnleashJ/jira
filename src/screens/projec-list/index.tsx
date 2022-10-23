@@ -22,6 +22,7 @@ export const ProjectListScreen = () => {
     client('projects', {
       data: cleanObject(debouncedParam)
     }).then(setList)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedParam])
   
   useMount(useCallback(() => {
@@ -31,6 +32,7 @@ export const ProjectListScreen = () => {
         setUsers(await res.json())
       }
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setUsers]))
 
   return (
