@@ -1,4 +1,5 @@
 import { Table } from "antd"
+import dayjs from "dayjs"
 import { User } from "./search-panel"
 
 interface Project {
@@ -6,7 +7,7 @@ interface Project {
   name: string
   personId: string
   organization: string
-
+  created: number
 }
 
 interface ListProps {
@@ -23,12 +24,25 @@ export const List = ({list, users}:ListProps ) => {
         title: '名称',
         dataIndex: 'name',
         sorter: (a,b) => a.name.localeCompare(b.name)
-      }, {
+      },{
+        title: '部门',
+        dataIndex: 'organization'
+      },{
         title: '负责人',
-        render(value, {personId}) {
+        render(value, project) {
           return (
             <span>
-              {users.find(user => user.id === personId)?.name || '未知'}
+              {users.find(user => user.id === project.personId)?.name || '未知'}
+            </span>
+          )
+        }
+      },{
+        title: '创建时间',
+        dataIndex: 'created',
+        render(value, project) {
+          return (
+            <span>
+              {value ? dayjs(value).format('YYYY-MM-DD'):'无'}
             </span>
           )
         }

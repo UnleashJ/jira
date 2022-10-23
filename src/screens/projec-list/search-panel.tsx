@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import { Form, Input, Select } from "antd"
 
 export interface User {
@@ -16,7 +17,7 @@ interface SearchPanelProps {
 
 export const SearchPanel = ({users, param, setParam} : SearchPanelProps) => {
   return(
-    <Form layout="inline">
+    <Form css={{ marginBottom: '2rem' }} layout="inline">
       <Form.Item>
         <Input 
           type="text" 
@@ -25,7 +26,7 @@ export const SearchPanel = ({users, param, setParam} : SearchPanelProps) => {
             ...state,
             name:e.target.value
           }))} 
-          placeholder='请输入'
+          placeholder='请输入项目名称'
         />
         </Form.Item>
       <Form.Item>

@@ -29,3 +29,11 @@ type Partial<T> = {
 ## [Emotion](https://emotion.sh/docs/install)
 
 使用 Emotion 作为 CSS-In-JS 方案。
+
+## SVG
+
+将 SVG 作为 React 组件引入，
+
+```js
+import { ReactComponent as SoftwareLogo } from "assets/software-logo.svg";
+```

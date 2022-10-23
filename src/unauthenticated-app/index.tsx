@@ -40,7 +40,7 @@ const ShadowCard = styled(Card)`
   min-height: 56rem;
   padding: 3.2rem 4rem;
   border-radius: 0.3rem;
-  box-shadow: rgba(0,0,0,0.1) 0 0 10px;
+  box-shadow: rgba(0,0,0,0.1) 0 0 10px 0;
   text-align: center;
 `
 const Header = styled.header`
