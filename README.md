@@ -25,3 +25,7 @@ type Partial<T> = {
 使用 CRACO 改变 create-react-app 的配置。
 
 **C**reate **R**eact **A**pp **C**onfiguration **O**verride is an easy and comprehensible configuration layer for create-react-app.
+
+## [Emotion](https://emotion.sh/docs/install)
+
+使用 Emotion 作为 CSS-In-JS 方案。
