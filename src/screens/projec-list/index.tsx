@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { List } from './list'
 import { SearchPanel } from './search-panel'
-import qs from 'qs'
 import { cleanObject, useMount, useDebounce } from 'utils/index'
 import { useHttp } from 'utils/http'
 
