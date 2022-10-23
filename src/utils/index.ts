@@ -18,7 +18,7 @@ export const cleanObject = (object: object) => {
 };
 
 export const useMount = (cb:() => void) => {
-  useEffect(cb, [cb]);
+  useEffect(cb, []);
 };
 
 // 防抖，包装一个参数value，返回一个新参数debouncedParam。

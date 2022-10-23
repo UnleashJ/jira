@@ -1,10 +1,23 @@
 import React, { useContext, useState, ReactNode } from "react"
 import * as auth from 'auth-provider'
 import { User } from "screens/projec-list/search-panel"
+import { http } from "utils/http"
+import { useMount } from "utils"
 
 interface AuthForm {
   username: string
   password: string
+}
+
+const bootstrapUser = async () => {
+  let user = null;
+  const token = auth.getToken() // 获取缓存中的token
+  if(token) {
+    // 请求token对应的user对象
+    const data = await http('me', {token})
+    user = data.user
+  }
+  return user
 }
 
 const AuthContext = React.createContext<{
@@ -21,7 +34,17 @@ export const AuthProvider = ({children}:{children: ReactNode}) => {
   const register = (form: AuthForm) => auth.register(form).then(setUser)
   const logout = () => auth.logout().then(() => setUser(null))
 
-  return <AuthContext.Provider children={children} value={{user, login, register, logout}}/>
+  useMount(() => {
+    // 加载初始user
+    bootstrapUser().then(setUser)
+  })
+
+  return (
+    <AuthContext.Provider 
+      children={children} 
+      value={{user, login, register, logout}}
+    />
+  )
 }
 
 // 消费Context
