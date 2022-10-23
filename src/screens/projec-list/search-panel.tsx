@@ -16,12 +16,17 @@ interface SearchPanelProps {
 
 export const SearchPanel = ({users, param, setParam} : SearchPanelProps) => {
   return(
-    <Form>
+    <Form layout="inline">
       <Form.Item>
-        <Input type="text" value={param.name} onChange={e => setParam(state => ({
+        <Input 
+          type="text" 
+          value={param.name} 
+          onChange={e => setParam(state => ({
             ...state,
             name:e.target.value
-          }))} />
+          }))} 
+          placeholder='请输入'
+        />
         </Form.Item>
       <Form.Item>
         <Select value={param.personId} onChange={value => setParam({
