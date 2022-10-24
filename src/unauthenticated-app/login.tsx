@@ -2,15 +2,24 @@ import { useAuth } from "context/auto-context"
 import { Form, Input } from "antd"
 import { LongButton } from "unauthenticated-app"
 import { useAsync } from "utils/use-async"
+import { useMount } from "utils"
 
-export const LoginScreen = ({onError}: {onError: (error: Error) => void}) => {
+export const LoginScreen = ({onError}: {onError: (error: Error | null) => void}) => {
   const {login, user} = useAuth()
   const {run, isLoading} = useAsync(undefined, {
     throwOnError: true
   })
 
+  useMount(() => {
+    onError(null)
+  })
+
   const handleSubmit = (values: {username: string, password: string}) => {
-    run(login(values)).catch(error => {
+    run(login(values))
+    .then(() => {
+      onError(null)
+    })
+    .catch(error => {
       onError(error)
     })
   }

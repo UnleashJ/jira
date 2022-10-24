@@ -2,11 +2,16 @@ import { Form, Input } from "antd"
 import { useAuth } from "context/auto-context"
 import { LongButton } from "unauthenticated-app"
 import { useAsync } from "utils/use-async"
+import { useMount } from "utils"
 
-export const RegisterScreen = ({onError}: {onError: (error: Error) => void}) => {
+export const RegisterScreen = ({onError}: {onError: (error: Error | null) => void}) => {
   const {register} = useAuth()
   const {run, isLoading} = useAsync(undefined, {
     throwOnError: true
+  })
+
+  useMount(() => {
+    onError(null)
   })
 
   const handleSubmit = async ({cpassword, ...values}: {username: string, password: string, cpassword: string}) => {
@@ -16,6 +21,7 @@ export const RegisterScreen = ({onError}: {onError: (error: Error) => void}) => 
     }
     try {
       await run(register(values))
+      onError(null)
     } catch (error) {
       onError(error as Error)
     }
