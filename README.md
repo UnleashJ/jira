@@ -37,3 +37,7 @@ type Partial<T> = {
 ```js
 import { ReactComponent as SoftwareLogo } from "assets/software-logo.svg";
 ```
+
+## 错误边界
+
+错误边界 https://zh-hans.reactjs.org/docs/error-boundaries.html
