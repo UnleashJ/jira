@@ -1,12 +1,18 @@
 import { useAuth } from "context/auto-context"
 import { Form, Input } from "antd"
 import { LongButton } from "unauthenticated-app"
+import { useAsync } from "utils/use-async"
 
-export const LoginScreen = () => {
+export const LoginScreen = ({onError}: {onError: (error: Error) => void}) => {
   const {login, user} = useAuth()
+  const {run, isLoading} = useAsync(undefined, {
+    throwOnError: true
+  })
 
   const handleSubmit = (values: {username: string, password: string}) => {
-    login(values)
+    run(login(values)).catch(error => {
+      onError(error)
+    })
   }
   return (
     <Form onFinish={handleSubmit}>
@@ -20,7 +26,7 @@ export const LoginScreen = () => {
         <Input placeholder="密码" type="password" id="password" />
       </Form.Item>
       <Form.Item>
-        <LongButton type="primary" htmlType="submit">登录</LongButton>
+        <LongButton loading={isLoading} type="primary" htmlType="submit">登录</LongButton>
       </Form.Item>
     </Form>
   )
