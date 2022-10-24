@@ -1,8 +1,10 @@
-import React, { useContext, useState, ReactNode } from "react"
+import React, { useContext, ReactNode } from "react"
 import * as auth from 'auth-provider'
 import { User } from "screens/projec-list/search-panel"
 import { http } from "utils/http"
 import { useMount } from "utils"
+import { useAsync } from "utils/use-async"
+import { FullPageErrorFallback, FullPageLoading } from "components/lib"
 
 interface AuthForm {
   username: string
@@ -29,15 +31,24 @@ const AuthContext = React.createContext<{
 AuthContext.displayName = 'AuthContext'
 
 export const AuthProvider = ({children}:{children: ReactNode}) => {
-  const [user, setUser] = useState<User | null>(null)
+  const {data: user, error, isLoading, isIdle, isError, run, setData:setUser} = useAsync<User | null> ()
+
   const login = (form: AuthForm) => auth.login(form).then(setUser)
   const register = (form: AuthForm) => auth.register(form).then(setUser)
   const logout = () => auth.logout().then(() => setUser(null))
 
   useMount(() => {
     // 加载初始user
-    bootstrapUser().then(setUser)
+    run(bootstrapUser())
   })
+
+  if(isIdle || isLoading) {
+    return <FullPageLoading/>
+  }
+
+  if(isError && error) {
+    return <FullPageErrorFallback error = {error}/>
+  }
 
   return (
     <AuthContext.Provider 
