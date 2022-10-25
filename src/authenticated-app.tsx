@@ -5,22 +5,28 @@ import { useAuth } from "context/auto-context"
 import { ProjectListScreen } from "screens/projec-list"
 import { ReactComponent as SoftwareLogo } from 'assets/software-logo.svg'
 import { useDocumentTitle } from "utils"
-import { Navigate, Routes, Route, BrowserRouter as Router } from "react-router-dom"
+import { Navigate, Routes, Route, useLocation, useNavigate } from "react-router-dom"
 import { ProjectScreen } from "screens/project"
+import { EpicScreen } from "screens/epic"
+import { KanBanScreen } from "screens/kanban"
 
 export const AuthenticatedApp = () => {
-  
+  const location = useLocation()
+  console.log(location)
   useDocumentTitle('项目列表', false)
   return (
     <Container>
       <PageHeader/>
       <main>
-        <Router>
-          <Routes>
-            <Route path="/projects" element={<ProjectListScreen />} />
-            <Route path="/projects/:projectId/*" element={<ProjectScreen/>}/>
-          </Routes>
-        </Router>
+        {location.pathname === '/' && <Navigate to="/projects"/>}
+        <Routes>
+          <Route path="/projects" element={<ProjectListScreen />} />
+          <Route path="/projects/:projectId" element={<ProjectScreen />} >
+            <Route path="" element={<KanBanScreen/>} />
+            <Route path="kanban" element={<KanBanScreen/>} />
+            <Route path="epic" element={<EpicScreen/>} />
+          </Route>
+        </Routes> 
       </main>
     </Container>
   )
@@ -28,10 +34,16 @@ export const AuthenticatedApp = () => {
 
 const PageHeader = () => {
   const {logout, user} = useAuth()
+  const navigate = useNavigate()
+  
   return (
     <Header between={true}>
       <HeaderLeft gap={true}>
-        <SoftwareLogo width={'18rem'} color={'rgb(38, 132, 255)'}/>
+        <SoftwareLogo 
+          width={'18rem'} 
+          color={'rgb(38, 132, 255)'}
+          onClick={() => navigate('/')}
+        />
         <h2>项目</h2>
         <h2>用户</h2>
       </HeaderLeft>
