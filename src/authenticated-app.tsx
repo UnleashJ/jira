@@ -4,9 +4,11 @@ import { Row } from "components/lib"
 import { useAuth } from "context/auto-context"
 import { ProjectListScreen } from "screens/projec-list"
 import { ReactComponent as SoftwareLogo } from 'assets/software-logo.svg'
+import { useDocumentTitle } from "utils"
 
 export const AuthenticatedApp = () => {
   const {logout, user} = useAuth()
+  useDocumentTitle('项目列表', false)
   return (
     <Container>
      <Header between={true}>
