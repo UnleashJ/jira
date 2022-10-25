@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { List } from './list'
 import { SearchPanel } from './search-panel'
 import { useDebounce } from 'utils/index'
@@ -9,12 +8,7 @@ import { useUsers } from 'utils/users'
 import { useUrlQueryParam } from 'utils/url'
 
 export const ProjectListScreen = () => {
-  const [, setParam] = useState({
-    name: '',
-    personId: ''
-  }) // 请求参数
-
-  const [param] = useUrlQueryParam(['name', 'personId'])
+  const [param, setParam] = useUrlQueryParam(['name', 'personId'])
   const debouncedParam = useDebounce(param)
 
   const {error,isLoading,list} = useProjects(debouncedParam)

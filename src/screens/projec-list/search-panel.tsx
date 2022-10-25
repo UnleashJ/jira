@@ -9,10 +9,10 @@ export interface User {
 interface SearchPanelProps {
   users: User[],
   param: {
-    name: string
-    personId: string
+    name?: string
+    personId?: string
   },
-  setParam:  (param: ((state: SearchPanelProps['param']) => SearchPanelProps['param']) | SearchPanelProps['param']) => void
+  setParam:  (param: SearchPanelProps['param']) => void
 }
 
 export const SearchPanel = ({users, param, setParam} : SearchPanelProps) => {
@@ -22,10 +22,10 @@ export const SearchPanel = ({users, param, setParam} : SearchPanelProps) => {
         <Input 
           type="text" 
           value={param.name} 
-          onChange={e => setParam(state => ({
-            ...state,
+          onChange={e => setParam({
+            ...param,
             name:e.target.value
-          }))} 
+          })} 
           placeholder='请输入项目名称'
         />
         </Form.Item>
@@ -37,7 +37,9 @@ export const SearchPanel = ({users, param, setParam} : SearchPanelProps) => {
           <Select.Option value={''}>负责人</Select.Option>
           {
             users.map(user => (
-              <Select.Option value={user.id} key={user.id}>{user.name}</Select.Option>
+              <Select.Option value={String(user.id)} key={user.id}>
+                {user.name}
+              </Select.Option>
             ))
           }
         </Select>
