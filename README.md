@@ -45,3 +45,7 @@ import { ReactComponent as SoftwareLogo } from "assets/software-logo.svg";
 ## 自定义 Hook 总结
 
 在自定义 Hook 中返回普通对象（非基本类型）或函数，如果使用它的组件中依赖了这些值，那些往往需要使用`useCallback`和`useMemo`进行优化。
+
+## 组件组合
+
+将与状态相关组件移动到父组件中定义，参考[官网](https://zh-hans.reactjs.org/docs/context.html#before-you-use-context)
