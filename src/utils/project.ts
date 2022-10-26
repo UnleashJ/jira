@@ -4,7 +4,7 @@ import { cleanObject } from "utils"
 import { useHttp } from "./http"
 import { useAsync } from "./use-async"
 
-export const useProjects = (param:Partial<Project>) => {
+export const useProjects = (param?:Partial<Project>) => {
   const {run, data:list, isLoading, error} = useAsync<Project[]>({
     stat: 'idle',
     error: null,
@@ -14,7 +14,7 @@ export const useProjects = (param:Partial<Project>) => {
 
   useEffect(() => {
     run(client('projects', {
-      data: cleanObject(param)
+      data: cleanObject(param || {})
     }))
   }, [param, run, client])
 

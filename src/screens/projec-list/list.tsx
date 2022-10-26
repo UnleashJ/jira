@@ -1,4 +1,5 @@
-import { Table, TableProps } from "antd"
+import { Dropdown, Menu, Table, TableProps } from "antd"
+import { ButtonNoPadding } from "components/lib"
 import { Pin } from "components/pin"
 import dayjs from "dayjs"
 import { Link } from "react-router-dom"
@@ -15,10 +16,11 @@ export interface Project {
 }
 
 interface ListProps extends TableProps<Project> {
-  users: User[]
+  users: User[],
+  setProjectModalOpen: (isOpen:boolean) => void
 }
 
-export const List = ({users, ...props}: ListProps ) => {
+export const List = ({users,setProjectModalOpen, ...props}: ListProps ) => {
   const {mutate, isLoading} = useEditProject()
   const pinProject = (id:number) => (pin:boolean) => mutate({id, pin}) // 函数柯里化
   return(
@@ -62,6 +64,23 @@ export const List = ({users, ...props}: ListProps ) => {
             </span>
           )
         }
+      },{
+        title: '操作',
+        render(value, record, index) {
+          return (
+            <Dropdown overlay={
+              <Menu>
+                <Menu.Item key={'edit'}>
+                  <ButtonNoPadding type="link" onClick={() => {
+                    setProjectModalOpen(true)
+                  }}>编辑</ButtonNoPadding>
+                </Menu.Item>
+              </Menu>
+            }>
+              <ButtonNoPadding type="link">...</ButtonNoPadding>
+            </Dropdown>
+          )
+        },
       }]} 
       {...props}
       loading = {props.loading || isLoading}
