@@ -22,7 +22,6 @@ export const cleanObject = (object: {[key:string]:unknown}) => {
 
 export const useMount = (cb:() => void) => {
   // 依赖项加上cb会造成无限循环
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(cb, []);
 };
 

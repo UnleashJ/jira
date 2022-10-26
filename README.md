@@ -42,4 +42,6 @@ import { ReactComponent as SoftwareLogo } from "assets/software-logo.svg";
 
 错误边界 https://zh-hans.reactjs.org/docs/error-boundaries.html
 
-## hook 与闭包
+## 自定义 Hook 总结
+
+在自定义 Hook 中返回对象或函数时，如果组件中依赖了这些值，那些往往需要使用`useCallback`和`useMemo`进行优化。

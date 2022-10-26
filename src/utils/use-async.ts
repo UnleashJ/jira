@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 interface State<D> {
   error: Error | null;
@@ -27,30 +27,30 @@ export const useAsync = <D>(initialState?: State<D>, initialConfig?: typeof defa
   }
 
   // 请求成功，设置数据
-  const setData = (data: D) => {
+  const setData = useCallback((data: D) => {
     setState({
       data,
       stat: 'success',
       error: null
     })
-  }
+  }, [setState])
 
-  const setError = (error: Error) => {
+  const setError = useCallback((error: Error) => {
     setState({
       data:null,
       error,
       stat: 'error'
     })
-  }
+  }, [setState])
 
-  const run = (promise: Promise<D>) => {
+  const run = useCallback((promise: Promise<D>) => {
     if(!promise || !promise.then) {
       throw new Error('请传入Promise数据')
     }
-    setState({
+    setState(state => ({
       ...state,
       stat: 'loading'
-    })
+    }))
     return promise
       .then(data => {
         setData(data)
@@ -62,7 +62,7 @@ export const useAsync = <D>(initialState?: State<D>, initialConfig?: typeof defa
         }
         return error
       })
-  }
+  }, [ config.throwOnError, setData, setError])
 
   return {
     ...state,

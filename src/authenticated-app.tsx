@@ -12,7 +12,6 @@ import { KanBanScreen } from "screens/kanban"
 
 export const AuthenticatedApp = () => {
   const location = useLocation()
-  console.log(location)
   useDocumentTitle('项目列表', false)
   return (
     <Container>

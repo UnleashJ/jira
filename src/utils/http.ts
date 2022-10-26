@@ -1,6 +1,7 @@
 import qs from 'qs'
 import * as auth from 'auth-provider'
 import { useAuth } from 'context/auto-context'
+import { useCallback } from 'react'
 
 const apiURL = process.env.REACT_APP_API_URL
 
@@ -45,5 +46,8 @@ export const http = async (endpoint: string, {data, token, headers, ...customCon
 export const useHttp = () => {
   const {user} = useAuth() // 从context中获得user
   // Parameters<Type> 由函数类型Type的参数类型来构建出一个元组类型。
-  return (...[endpoint, config]: Parameters<typeof http>) => http(endpoint, {...config, token: user?.token})
+  return useCallback(
+    (...[endpoint, config]: Parameters<typeof http>) => {
+      return http(endpoint, {...config, token: user?.token})
+    }, [user?.token])
 }

@@ -11,7 +11,7 @@ export const ProjectListScreen = () => {
   const [param, setParam] = useProjectsSearchParams()
   const debouncedParam = useDebounce(param)
 
-  const {error,isLoading,list} = useProjects(debouncedParam)
+  const {error, isLoading, list} = useProjects(debouncedParam)
   const {users} = useUsers()
   
   return (
