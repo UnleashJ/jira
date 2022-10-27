@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { Popover, Typography, List, Divider, Button } from "antd"
+import { Popover, Typography, List, Divider } from "antd"
 import { ButtonNoPadding } from "components/lib"
 import { useDispatch } from "react-redux"
 import { useProjects } from "utils/project"
@@ -7,7 +7,7 @@ import { projectListActons } from "./project-list.slice"
 
 export const ProjectPopover = () => {
   const dispatch = useDispatch()
-  const {list:projects, isLoading} = useProjects()
+  const {list:projects} = useProjects()
   const pinnedProjects = projects?.filter(project => project.pin)
   const content = (
     <ContentContainer>

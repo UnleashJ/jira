@@ -3,20 +3,23 @@ import { Form, Input } from "antd"
 import { LongButton } from "unauthenticated-app"
 import { useAsync } from "utils/use-async"
 import { useMount } from "utils"
+import { useDispatch } from "react-redux"
+import {login as loginThunk} from 'store/auth.slice'
 
 export const LoginScreen = ({onError}: {onError: (error: Error | null) => void}) => {
   const {login, user} = useAuth()
   const {run, isLoading} = useAsync(undefined, {
     throwOnError: true
   })
+  const dispatch = useDispatch()
 
   useMount(() => {
     onError(null)
   })
 
-  
-
   const handleSubmit = (values: {username: string, password: string}) => {
+    // dispatch(loginThunk(values))
+
     run(login(values))
     .then(() => {
       onError(null)

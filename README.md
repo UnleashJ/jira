@@ -53,3 +53,7 @@ import { ReactComponent as SoftwareLogo } from "assets/software-logo.svg";
 ## 知识点
 
 1. 纯函数，可预测 predictable，多次调用某一个函数，传入参数相同的情况下，输出总是相同的。
+
+## react-redux
+
+[官网](https://cn.redux.js.org/tutorials/fundamentals/part-5-ui-react#redux-%E7%BB%93%E5%90%88-react-%E4%BD%BF%E7%94%A8)

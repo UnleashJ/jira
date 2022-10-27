@@ -8,7 +8,7 @@ interface PinProps extends React.ComponentProps<typeof Rate> {
 
 export const Pin = (props: PinProps) => {
   const [checked, setChecked] = useState(props.checked)
-  const {onCheckedChange, ...restProps} = props
+  const {onCheckedChange} = props
   return (
     <Rate 
       count={1}
