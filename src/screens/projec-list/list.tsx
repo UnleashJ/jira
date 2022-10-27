@@ -2,8 +2,10 @@ import { Dropdown, Menu, Table, TableProps } from "antd"
 import { ButtonNoPadding } from "components/lib"
 import { Pin } from "components/pin"
 import dayjs from "dayjs"
+import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
 import { useEditProject } from "utils/project"
+import { projectListActons } from "./project-list.slice"
 import { User } from "./search-panel"
 
 export interface Project {
@@ -16,11 +18,11 @@ export interface Project {
 }
 
 interface ListProps extends TableProps<Project> {
-  users: User[],
-  setProjectModalOpen: (isOpen:boolean) => void
+  users: User[]
 }
 
-export const List = ({users,setProjectModalOpen, ...props}: ListProps ) => {
+export const List = ({users, ...props}: ListProps ) => {
+  const dispatch = useDispatch()
   const {mutate, isLoading} = useEditProject()
   const pinProject = (id:number) => (pin:boolean) => mutate({id, pin}) // 函数柯里化
   return(
@@ -72,7 +74,7 @@ export const List = ({users,setProjectModalOpen, ...props}: ListProps ) => {
               <Menu>
                 <Menu.Item key={'edit'}>
                   <ButtonNoPadding type="link" onClick={() => {
-                    setProjectModalOpen(true)
+                    dispatch(projectListActons.openProjectModal())
                   }}>编辑</ButtonNoPadding>
                 </Menu.Item>
               </Menu>

@@ -48,7 +48,7 @@ import { ReactComponent as SoftwareLogo } from "assets/software-logo.svg";
 
 ## 组件组合
 
-将与状态相关组件移动到父组件中定义，参考[官网](https://zh-hans.reactjs.org/docs/context.html#before-you-use-context)
+将与状态相关的页面元素（组件）移动到父组件中定义，参考[官网](https://zh-hans.reactjs.org/docs/context.html#before-you-use-context)
 
 ## 知识点
 

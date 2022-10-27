@@ -5,6 +5,8 @@ import reportWebVitals from './reportWebVitals';
 import { loadServer, DevTools } from 'jira-dev-tool';
 import { AppProviders } from 'context';
 import 'antd/dist/antd.less'
+import { Provider } from 'react-redux';
+import { store } from 'store';
 
 
 loadServer(() => {
@@ -13,10 +15,12 @@ loadServer(() => {
   );
   root.render(
     <React.StrictMode>
+      <Provider store={store}>
       <AppProviders>
         <DevTools/>
         <App />
       </AppProviders>
+      </Provider>
     </React.StrictMode>
   )
 })

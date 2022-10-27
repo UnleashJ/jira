@@ -16,7 +16,6 @@ export const Pin = (props: PinProps) => {
       onChange={(value:number) => {
         onCheckedChange?.(!!value)
           .then(() => {
-            console.log('更新')
             setChecked(!!value)
           })
       }}
