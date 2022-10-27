@@ -20,7 +20,7 @@ export const Row = styled.div<{
 `
 
 export const UnDo = () => {
-  const [state, {set, reset, undo, redo, canRedo, canUndo}] = useUndo(0)
+  const [state, {set, reset, undo, redo, canRedo, canUndo}] = useUndo<number>(0)
   return (
     <>
       <div>

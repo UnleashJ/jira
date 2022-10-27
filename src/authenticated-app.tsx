@@ -36,7 +36,6 @@ export const AuthenticatedApp = () => {
       <ProjectModal projectModalOpen={projectModalOpen} onClose={() => {
         setProjectModalOpen(false)
       }} />
-      <UnDo/>
     </Container>
   )
 }
