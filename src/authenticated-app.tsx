@@ -14,17 +14,17 @@ import { ProjectModal } from "screens/projec-list/project.modal"
 import { ProjectPopover } from "screens/projec-list/project-popover"
 
 export const AuthenticatedApp = () => {
-  const  [projectModalOpen, setProjectModalOpen] = useState(false) // 控制新建项目的弹框是否展示
+  // const  [projectModalOpen, setProjectModalOpen] = useState(false) // 控制新建项目的弹框是否展示
   const location = useLocation()
   useDocumentTitle('项目列表', false)
   return (
     <Container>
-      <PageHeader setProjectModalOpen={setProjectModalOpen}/>
+      <PageHeader/>
       <main>
         {location.pathname === '/' && <Navigate to="/projects"/>}
         <Routes>
           <Route path="/projects" element={
-            <ProjectListScreen setProjectModalOpen={setProjectModalOpen}/>
+            <ProjectListScreen/>
           } />
           <Route path="/projects/:projectId" element={<ProjectScreen />} >
             <Route path="" element={<KanBanScreen/>} />
@@ -33,14 +33,12 @@ export const AuthenticatedApp = () => {
           </Route>
         </Routes> 
       </main>
-      <ProjectModal projectModalOpen={projectModalOpen} onClose={() => {
-        setProjectModalOpen(false)
-      }} />
+      <ProjectModal/>
     </Container>
   )
 }
 
-const PageHeader = ({setProjectModalOpen} : {setProjectModalOpen:(isOpen:boolean) => void}) => {
+const PageHeader = () => {
   const navigate = useNavigate()
   return (
     <Header between={true}>
@@ -50,7 +48,7 @@ const PageHeader = ({setProjectModalOpen} : {setProjectModalOpen:(isOpen:boolean
           color={'rgb(38, 132, 255)'}
           onClick={() => navigate('/')}
         />
-        <ProjectPopover setProjectModalOpen={setProjectModalOpen}/>
+        <ProjectPopover/>
         <span>用户</span>
       </HeaderLeft>
       <HeaderRight>
