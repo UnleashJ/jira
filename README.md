@@ -20,6 +20,10 @@ type Partial<T> = {
 };
 ```
 
+### 类型守卫
+
+http://www.patrickzhong.com/TypeScript/zh/reference/advanced-types.html#%E7%B1%BB%E5%9E%8B%E5%AE%88%E5%8D%AB%E4%B8%8E%E7%B1%BB%E5%9E%8B%E5%8C%BA%E5%88%86type-guards-and-differentiating-types
+
 ## CRACO
 
 使用 CRACO 改变 create-react-app 的配置。

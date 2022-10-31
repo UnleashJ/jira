@@ -10,7 +10,7 @@ import { useProjectModal, useProjectsSearchParams } from './utils'
 export const ProjectListScreen = () => {
   const [param, setParam] = useProjectsSearchParams()
   const debouncedParam = useDebounce(param)
-  const {error, isLoading, list} = useProjects(debouncedParam)
+  const {error, isLoading, data: list} = useProjects(debouncedParam)
   const {users} = useUsers()
   const {open} = useProjectModal()
   
@@ -22,7 +22,7 @@ export const ProjectListScreen = () => {
       </Row>
       <SearchPanel  users={users || []} param={param} setParam={setParam}/>
       {
-        error ? <Typography.Text type='danger'>{error.message}</Typography.Text> : null
+        error ? <Typography.Text type='danger'>{(error as Error).message}</Typography.Text> : null
       }
       <List users={users || []} dataSource={list || []} loading={isLoading}/>
     </Container>

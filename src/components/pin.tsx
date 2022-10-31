@@ -1,24 +1,18 @@
 import { Rate } from "antd";
-import { useState } from "react";
 
 interface PinProps extends React.ComponentProps<typeof Rate> {
   checked: boolean,
-  onCheckedChange?: (checked: boolean) => Promise<any>
+  onCheckedChange?: (checked: boolean) => void
 }
 
 export const Pin = (props: PinProps) => {
-  const [checked, setChecked] = useState(props.checked)
-  const {onCheckedChange, ...restProps} = props
+  const {onCheckedChange} = props
   return (
     <Rate 
       count={1}
-      value={Number(checked)}
+      value={Number(props.checked)}
       onChange={(value:number) => {
         onCheckedChange?.(!!value)
-          .then(() => {
-            console.log('更新')
-            setChecked(!!value)
-          })
       }}
     />
   )
