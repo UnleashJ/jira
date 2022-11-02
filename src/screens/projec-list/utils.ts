@@ -13,6 +13,10 @@ export const useProjectsSearchParams = () => {
   ] as const
 }
 
+export const useProjectQuertKey = () => {
+  return ['projects', useProjectsSearchParams()[0]]
+}
+
 // Modal框
 export const useProjectModal = () => {
   // 通过URL search参数中的projectCreate为true或者false控制modal框的展示与关闭
