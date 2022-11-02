@@ -21,7 +21,7 @@ interface ListProps extends TableProps<Project> {
 }
 
 export const List = ({users, ...props}: ListProps ) => {
-  const {mutate, isLoading} = useEditProject()
+  const {mutate} = useEditProject()
   const {open, startEdit} = useProjectModal()
   const pinProject = (id:number) => (pin:boolean) => mutate({id, pin}) // 函数柯里化
   return(
@@ -92,7 +92,6 @@ export const List = ({users, ...props}: ListProps ) => {
         },
       }]} 
       {...props}
-      loading = {props.loading || isLoading}
     />
   )
 }

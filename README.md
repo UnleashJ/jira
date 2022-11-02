@@ -56,6 +56,10 @@ import { ReactComponent as SoftwareLogo } from "assets/software-logo.svg";
 
 将与状态相关组件移动到父组件中定义，参考[官网](https://zh-hans.reactjs.org/docs/context.html#before-you-use-context)
 
+## React Query https://tanstack.com/query/v4
+
+乐观更新
+
 ## 知识点
 
 1. 纯函数，可预测 predictable，多次调用某一个函数，传入参数相同的情况下，输出总是相同的。
