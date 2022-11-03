@@ -3,18 +3,9 @@ import { ButtonNoPadding } from "components/lib"
 import { Pin } from "components/pin"
 import dayjs from "dayjs"
 import { Link } from "react-router-dom"
+import { Project, User } from "types"
 import { useDeleteProject, useEditProject } from "utils/project"
-import { User } from "./search-panel"
-import { useProjectModal, useProjectQuertKey, useProjectsSearchParams } from "./utils"
-
-export interface Project {
-  id: number
-  name: string
-  personId: number
-  organization: string
-  created: number
-  pin ?:boolean
-}
+import { useProjectModal, useProjectQuertKey } from "./utils"
 
 interface ListProps extends TableProps<Project> {
   users: User[]
@@ -41,7 +32,7 @@ export const List = ({users, ...props}: ListProps ) => {
         dataIndex: 'name',
         sorter: (a,b) => a.name.localeCompare(b.name),
         render(value, project) {
-          return <Link to={String(project.id)}>{project.name}</Link>
+          return <Link to={`${String(project.id)}/kanban`}>{project.name}</Link>
         }
       },{
         title: '部门',

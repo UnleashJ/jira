@@ -1,5 +1,5 @@
 import { useCallback } from "react"
-import { User } from "screens/projec-list/search-panel"
+import { User } from "types"
 import { useMount } from "utils"
 import { useHttp } from "./http"
 import { useAsync } from "./use-async"

@@ -48,7 +48,7 @@ import { ReactComponent as SoftwareLogo } from "assets/software-logo.svg";
 
 ## 自定义 Hook 总结
 
-1. 在自定义 Hook 中返回普通对象（非基本类型）或函数，如果使用它的组件中依赖了这些值，那些往往需要使用`useCallback`和`useMemo`进行优化。
+1. 在自定义 Hook 中返回普通对象（非基本类型）或函数，如果使用它的组件中依赖了这些值的变化（比如在 useEffect 中），那些往往需要使用`useCallback`和`useMemo`进行优化。
 
 2. 自定义 hook 中一般需要返回多个值，可以将其放在数组（tuple）或对象 obj 中返回。放在数组中返回，解构时需要按照元素的顺序依次赋值，但是方便重命名。放在对象中返回，不需要按照顺序依次解构，且可以获取指定的某几个值，但重命名时要按照{originName: newName}的形式。总结：一般值有三个以上时，就放在对象中返回，否则放在数组中返回。
 

@@ -76,6 +76,7 @@ export const useDocumentTitle = (title: string, keepOnUnmount:boolean = true) =>
     return () => {
       if(!keepOnUnmount) {
         document.title = copyValue
+        console.log(copyValue)
       }
     }
   }, [keepOnUnmount, oldTitle ])

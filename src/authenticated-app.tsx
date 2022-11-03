@@ -8,15 +8,13 @@ import { useDocumentTitle } from "utils"
 import { Navigate, Routes, Route, useLocation, useNavigate } from "react-router-dom"
 import { ProjectScreen } from "screens/project"
 import { EpicScreen } from "screens/epic"
-import { KanBanScreen } from "screens/kanban"
-import { useState } from "react"
+import { KanbanScreen } from "screens/kanban"
 import { ProjectModal } from "screens/projec-list/project-modal"
 import { ProjectPopover } from "screens/projec-list/project-popover"
 
 export const AuthenticatedApp = () => {
-  // const  [projectModalOpen, setProjectModalOpen] = useState(false) // 控制新建项目的弹框是否展示
   const location = useLocation()
-  useDocumentTitle('项目列表', false)
+  useDocumentTitle('项目列表')
   return (
     <Container>
       <PageHeader/>
@@ -27,8 +25,7 @@ export const AuthenticatedApp = () => {
             <ProjectListScreen/>
           } />
           <Route path="/projects/:projectId" element={<ProjectScreen />} >
-            <Route path="" element={<KanBanScreen/>} />
-            <Route path="kanban" element={<KanBanScreen/>} />
+            <Route path="kanban" element={<KanbanScreen/>} />
             <Route path="epic" element={<EpicScreen/>} />
           </Route>
         </Routes> 
