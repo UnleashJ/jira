@@ -96,7 +96,6 @@ const More = ({project}:{project:Project}) => {
         <Menu.Item key={'edit'}>
           <ButtonNoPadding type="link" onClick={() => {
             startEdit(project.id)
-            console.log(project.id)
           }}>
             编辑
           </ButtonNoPadding>

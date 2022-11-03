@@ -10,7 +10,7 @@ import { ProjectScreen } from "screens/project"
 import { EpicScreen } from "screens/epic"
 import { KanBanScreen } from "screens/kanban"
 import { useState } from "react"
-import { ProjectModal } from "screens/projec-list/project.modal"
+import { ProjectModal } from "screens/projec-list/project-modal"
 import { ProjectPopover } from "screens/projec-list/project-popover"
 
 export const AuthenticatedApp = () => {
