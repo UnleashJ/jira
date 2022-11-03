@@ -60,6 +60,12 @@ import { ReactComponent as SoftwareLogo } from "assets/software-logo.svg";
 
 乐观更新
 
+## 跨组件状态管理
+
+1. 小场面： 状态提升，组合组件
+2. 缓存状态： 服务端状态，使用 react-query
+3. 客户端全局状态： context、redux、url(使用 react-router 的 hook: useSearchParams)
+
 ## 知识点
 
 1. 纯函数，可预测 predictable，多次调用某一个函数，传入参数相同的情况下，输出总是相同的。
